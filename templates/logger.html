@@ -5,16 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log submitter</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,300&display=swap" rel="stylesheet">
     <style>
+        :root{
+            --color-main: #1667b8;
+            --color-main-2: #3d7dbd;
+            --bg: #cbcbda;
+            
+        }
         body {
-            font-family: sans-serif;
+            font-family: 'Roboto', sans-serif;
+            background-color: rgb(255, 253, 253);
+            margin: 0;
         }
         .chat-message {
-            background-color: #EBEBEB;
+            background-color: var(--bg);
             border-radius: 10px;
             padding: 10px;
-            margin: 5px;
-            box-shadow: 5px 3px #888888;
+            margin: .7rem;
+            box-shadow: 3px 3px 3px 1px var(--color-main);
         }
 
         .chat-message p {
@@ -27,23 +38,107 @@
         }
 
         .chat-author-broadcaster {
-            color: #D64937;
+            color:  var(--color-main);
         }
 
         .chat-author-moderator {
             color: #4F4F54;
         }
+        /* header container */
+        .container-channel{
+        margin: 0;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        width: 100%;
+        grid-gap: .1rem;
+        background-color: var(--color-main); 
+        }
+        .title-channel{
+        display: block;
+        font-size: 1rem;
+        background-color: var(--bg) ;
+        margin: 10px 10px 10px 14px;
+        padding: 5px;
+        border-radius: .2rem;
+        }
+        .nasa-title{
+        display: block;
+        font-size: 1rem;
+        background-color:var(--bg) ;        
+        margin: 10px 10px 10px 14px;
+        padding: 5px;
+        border-radius: .2rem;
+        }
+        .user_position{
+        background-color: var(--color-main);
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+            
+        }
+        .user_name,
+        .position{
+        display:inline-block;
+        font-size: 1rem;
+        background-color: var(--bg) ;        
+        margin: 10px 10px 10px 14px;
+        padding: .3rem;
+        border-radius: .2rem;
+        
+
+        }
+        .message{
+        background-color: var(--color-main);
+        padding: .7rem;
+        
+        
+        }
+        .button-submit{
+            padding: .3rem;
+            border-radius: .2rem;
+
+        }
+        .label-input{
+            color: #131516;
+            background-color: var(--bg);
+            padding: .3rem;
+            border-radius: .2rem;
+            box-shadow: 1px 1px 1px;
+        }
+        .input-text{
+            padding: .3rem;
+            border-radius: .2rem; 
+            
+        }
+        .message form{
+            display: inline-block;
+            padding: .6rem;
+            background-color: var(--color-main-2) ;         
+            border-radius: .2rem;
+        }
+        .message-history{
+            margin-top: .3rem;
+        }
+
+        
     </style>
 </head>
 <body>
-    <h1>Channel: {{ channel }}</h1>
-    <h2 id="user_name">User: </h2>
-    <h2 id="user_position">Position: </h2>
-    <div>
+    <header>
+        <div class="container-channel">
+            <h1 class="title-channel">Channel: {{ channel }}</h1>
+            <h2 class="nasa-title">NASA</h2>    
+        </div>
+    </header>
+    <div class="user_position">
+                <h2 id="user_name" class="user_name">User: </h2>
+                <h2 id="user_position" class="position">Position: </h2>
+    </div>         
+         
+    
+    <div class="message">
         <form id="post-message">
-            <label for="log_text">Message:</label>
-            <input type="text" name="message" id="log_text">
-            <input type="submit" name="Send Log" id="send_log">
+            <input class="input-text" type="text" name="message" id="log_text" placeholder="Message">
+            <input  class="button-submit" type="submit" name="Send Log" id="send_log">
         </form>
     </div>
 
@@ -62,8 +157,8 @@
                 }).then(res => res.json())
             .then(data => user_data = data.user)
             .then(() => {
-                document.getElementById("user_name").innerText = document.getElementById("user_name").innerText + user_data.name;
-                document.getElementById("user_position").innerText = document.getElementById("user_position").innerText + user_data.position;
+                document.getElementById("user_name").innerText = document.getElementById("user_name").innerText + " "+ user_data.name;
+                document.getElementById("user_position").innerText = document.getElementById("user_position").innerText + " "+ user_data.position;
             })
 
         formElement = document.getElementById("post-message")
@@ -85,7 +180,7 @@
                 result.timestamp = new Date().toUTCString();
                 result.channel = "{{ channel }}";
                 console.log(result)
-                
+                if( result.message != ""){
                 fetch('/api/messages', {
                 method: 'post',
                 headers: {
@@ -108,7 +203,7 @@
                     formElement.reset();
                 })
 
-
+                }
             }
         }
 
