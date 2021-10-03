@@ -1,0 +1,44 @@
+[
+    {
+        "id" : 0,
+        "name" : "super",
+        "token" : "1957",
+        "position" : "Supervisor",
+        "supervisor" : false
+    },
+    {
+        "id" : 1,
+        "name" : "Francesco Gentile",
+        "token" : "9256",
+        "position" : "Developer",
+        "supervisor" : false
+    },
+    {
+        "id" : 2,
+        "name" : "Gustavo Sombra",
+        "token" : "2684",
+        "position" : "Developer",
+        "supervisor" : false
+    },
+    {
+        "id" : 3,
+        "name" : "Walter Ariel Caruso",
+        "token" : "6578",
+        "position" : "Developer",
+        "supervisor" : false
+    },
+    {
+        "id" : 4,
+        "name" : "Luciano Chiroli",
+        "token" : "8732",
+        "position" : "Developer",
+        "supervisor" : false
+    },
+    {
+        "id" : 5,
+        "name" : "Albano Bosquet",
+        "token" : "5568",
+        "position" : "Developer",
+        "supervisor" : false
+    }
+]

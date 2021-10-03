@@ -1,0 +1,33 @@
+{
+    "id" : "id",
+    "message" : "message",
+    "author_id" : "author_id",
+    "timestamp" : "GMT Timestamp",
+    "channel" : "channel_id",
+    "relevance" : {
+        "channel001" : {
+            "score" : 1, // From 0 to 1, how relevant the message is to the channel
+            "factors" : [
+                "channel_importance",
+                "polarity",
+                "tematic_similarity",
+                "keywords",
+                "mentions",
+                "highligts"
+            ] // In order of weighted importance
+        }
+        "channel002" : {...},
+        ...
+
+    },
+    "mentions" : [
+        {
+            "channel" : "channel_id",
+            "message" : "message_id"
+        }
+    ], // What messages is this message commenting on
+    "hightlights" : [
+        "user_id",
+        ...
+    ]
+}

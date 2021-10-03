@@ -1,0 +1,13 @@
+{
+    "token" : "token"
+}
+
+// Si es usuario: 200
+{
+    "token" : "token"
+}
+// Si no: 403
+{
+    "message" : "Unauthorized"
+}
+

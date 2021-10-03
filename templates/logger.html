@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log submitter</title>
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+        .chat-message {
+            background-color: #EBEBEB;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 5px;
+            box-shadow: 5px 3px #888888;
+        }
+
+        .chat-message p {
+            margin: 0px;
+            color: #131516;
+        }
+
+        .chat-author {
+            font-weight: bolder;
+        }
+
+        .chat-author-broadcaster {
+            color: #D64937;
+        }
+
+        .chat-author-moderator {
+            color: #4F4F54;
+        }
+    </style>
+</head>
+<body>
+    <h1>Channel: {{ channel }}</h1>
+    <h2 id="user_name">User: </h2>
+    <h2 id="user_position">Position: </h2>
+    <div>
+        <form id="post-message">
+            <label for="log_text">Message:</label>
+            <input type="text" name="message" id="log_text">
+            <input type="submit" name="Send Log" id="send_log">
+        </form>
+    </div>
+
+    <div id="message-history"></div>
+
+    <script>
+        var user_data;
+        fetch('/api/login', {
+                method: 'post',
+                headers: {
+                    'Accept': 'application/json, text/plain, */*',
+                    'Content-Type': 'application/json',
+                    'token' : '{{ token }}'
+                },
+                body: JSON.stringify({"token" : "{{ token }}"})
+                }).then(res => res.json())
+            .then(data => user_data = data.user)
+            .then(() => {
+                document.getElementById("user_name").innerText = document.getElementById("user_name").innerText + user_data.name;
+                document.getElementById("user_position").innerText = document.getElementById("user_position").innerText + user_data.position;
+            })
+
+        formElement = document.getElementById("post-message")
+        // convert the form to JSON
+        const getFormJSON = (form) => {
+            const data = new FormData(form);
+            return Array.from(data.keys()).reduce((result, key) => {
+                result[key] = data.get(key);
+                return result;
+            }, {});
+        };
+
+        // handle the form submission event, prevent default form behaviour, check validity, convert form to JSON
+        const handler = (event) => {
+            event.preventDefault();
+            const valid = formElement.reportValidity();
+            if (valid) {
+                const result = getFormJSON(formElement);
+                result.timestamp = new Date().toUTCString();
+                result.channel = "{{ channel }}";
+                console.log(result)
+                
+                fetch('/api/messages', {
+                method: 'post',
+                headers: {
+                    'Accept': 'application/json, text/plain, */*',
+                    'Content-Type': 'application/json',
+                    'token' : '{{ token }}'
+                },
+                body: JSON.stringify(result)
+                }).then(res => res.json())
+                .then(data => {
+                    board = document.getElementById("message-history").innerHTML;
+                    board = `
+                    <div class="chat-message">
+                                <p style="font-size:x-small;">{{ channel }}-${data.id}</p>
+                                <p>${user_data.name} : ${user_data.position}<span style="float: right;">${result.timestamp}</span></p>
+                                <br/>
+                                <p>${result.message}</p>
+                            </div>` + board;
+                    document.getElementById("message-history").innerHTML = board;
+                    formElement.reset();
+                })
+
+
+            }
+        }
+
+        formElement.addEventListener("submit", handler)
+    </script>
+</body>
+</html>
