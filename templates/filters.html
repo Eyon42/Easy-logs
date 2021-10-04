@@ -1,0 +1,53 @@
+<div>
+    <h3>Level of Importance</h3>
+    <select name="level-of-importance" id="level-of-importance">
+        <option value="all" selected="selected">All</option>
+        <option value="trivial">Trivial</option>
+        <option value="relevant">Relevant</option>
+        <option value="critical">Critical</option>
+    </select>
+</div>
+<div>
+    <h3>Keywords</h3>
+    <input type="text">
+</div>
+<div>
+    <h3>Grouping</h3>
+    <select name="grouping-method" id="grouping-method">
+        <option value="None" selected="selected">Do not group</option>
+        <option value="similarity">Similarity</option>
+        <option value="channel_and_time">Channel and time</option>
+    </select>
+</div>
+<div>
+    <h3>Dissonance Detector</h3>
+    <label for="enabled">Enabled</label>
+    <input type="checkbox" name="enabled">
+    <label for="sensitivity">Sensitivity:</label>
+    <input type="range" min="0" max="1" value="0.5" class="slider" id="diss-sensitivity" name="sensitivity">
+</div>
+<div>
+    <h3>Subjectivity</h3>
+    <label for="min">Min:</label>
+    <input type="range" min="-1" max="1" value="-1" class="slider" id="subjectivity-sensitivity_min" name="min">
+    <label for="max">Max:</label>
+    <input type="range" min="-1" max="1" value="1" class="slider" id="subjectivity-sensitivity_max" name="max">
+</div>
+<div>
+    <h3>Timeline</h3>
+    <label for="from">From:</label>
+    <input type="text" name="from">
+    <label for="to">To:</label>
+    <input type="text" name="to">
+</div>
+<div>
+    <h3>Level of Importance</h3>
+    <select name="user-selector" id="user-selector">
+        <option value="all" selected="selected">All</option>
+        <option value="Francesco Gentile">Trivial</option>
+        <option value="Gustavo Sombra">Relevant</option>
+        <option value="Walter Ariel Caruso">Critical</option>
+        <option value="Luciano Chiroli">Critical</option>
+        <option value="Albano Bosquet">Critical</option>
+    </select>
+</div>

@@ -68,7 +68,10 @@ def create_app():
             }, 403
 
         if request.method == "GET":
-            return {}
+            with open(LOGS_FILE,"r") as f:
+                reader = csv.DictReader(f,delimiter = ",")
+                messages = [i for i in reader]
+            return {"messages" : messages}
     
         msg = request.json
         
