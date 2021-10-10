@@ -2,6 +2,7 @@ import datetime
 import json
 import csv
 import re
+import os
 from flask import Flask, request, render_template_string, render_template, g
 
 LOGS_FILE = "data/logs.csv"
@@ -32,8 +33,12 @@ def create_app():
     app = Flask(__name__)
     app.config.from_object(__name__+'.ConfigClass')
 
-    @app.route('/api/login', methods=["POST"])
+    @app.route('/')
     def home_page():
+        return {"meesage" : "hello world!"}
+
+    @app.route('/api/login', methods=["POST"])
+    def login():
         token = request.json["token"]
         if token in user_tokens:
             return {
@@ -111,4 +116,4 @@ def create_app():
 # Start development web server
 if __name__ == '__main__':
     app = create_app()
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=os.environ.get("PORT"), debug=True)
