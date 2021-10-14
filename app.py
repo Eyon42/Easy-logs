@@ -1,8 +1,7 @@
-import datetime
-import json
 import csv
-import re
 import os
+import pymongo
+from bson import ObjectId
 from flask import Flask, request, render_template_string, render_template, g
 
 LOGS_FILE = "data/logs.csv"
@@ -13,18 +12,17 @@ class ConfigClass(object):
     # Flask settings
     SECRET_KEY = 'kitty'
 
-with open("data/users.json") as f:
-    users = json.load(f)
-user_tokens = [i["token"] for i in users]
+# with open("data/users.json") as f:
+#     users = json.load(f)
+# user_tokens = [i["token"] for i in users]
+client = pymongo.MongoClient(f"mongodb+srv://{os.environ.get('MONGODB_BE_USER')}:{os.environ.get('MONGODB_PASS')}@{os.environ.get('MONGODB_DBURI')}/?{os.environ.get('MONGODB_DB')}retryWrites=true&w=majority")
+db = client[os.environ.get('MONGODB_DB')]
 
 def get_user_by_token(token):
-    for user in users:
-        if user["token"] == token:
-            return user
-def get_user_by_id(id):
-    for user in users:
-        if user["id"] == id:
-            return user
+    return db.users.find_one({"token":token})
+
+def get_user_by_id(str : id):
+    return db.users.find_one({"_id":ObjectId(id)})
 
 def create_app():
     """ Flask application factory """
@@ -40,10 +38,11 @@ def create_app():
     @app.route('/api/login', methods=["POST"])
     def login():
         token = request.json["token"]
-        if token in user_tokens:
+        user = get_user_by_token(token)
+        if user:
             return {
                 "message" : "Success",
-                "user" : get_user_by_token(token)
+                "user" : user
             }
         else:
             return {
@@ -73,9 +72,10 @@ def create_app():
             }, 403
 
         if request.method == "GET":
-            with open(LOGS_FILE,"r") as f:
-                reader = csv.DictReader(f,delimiter = ",")
-                messages = [i for i in reader]
+            # with open(LOGS_FILE,"r") as f:
+            #     reader = csv.DictReader(f,delimiter = ",")
+            #     messages = [i for i in reader]
+            messages = list(db.logs.find())
             return {"messages" : messages}
     
         msg = request.json
@@ -85,18 +85,18 @@ def create_app():
                 "message" : "Invalid log"
             }
         
-        with open(LOGS_FILE,"r") as f:
-            reader = csv.reader(f,delimiter = ",")
-            data = list(reader)
-            id = len([i for i in data if i[2]==msg["channel"]])
+        # with open(LOGS_FILE,"r") as f:
+        #     reader = csv.reader(f,delimiter = ",")
+        #     data = list(reader)
+        #     id = len([i for i in data if i[2]==msg["channel"]])
 
         msg["author_name"] = user["name"]
-        msg["id"] = id
+        # msg["id"] = id
 
-        with open(LOGS_FILE, 'a+', newline='') as f:
-            w = csv.DictWriter(f, msg.keys())
-            w.writerow(msg)
-
+        # with open(LOGS_FILE, 'a+', newline='') as f:
+            # w = csv.DictWriter(f, msg.keys()) 
+            # w.writerow(msg)   
+        db.logs.insert(msg)
 
         return {"id" : id}
 
