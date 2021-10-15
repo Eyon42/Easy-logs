@@ -15,8 +15,7 @@ class ConfigClass(object):
 # with open("data/users.json") as f:
 #     users = json.load(f)
 # user_tokens = [i["token"] for i in users]
-print(f"mongodb+srv://{os.getenv('MONGODB_BE_USER')}:{os.getenv('MONGODB_PASS')}@{os.getenv('MONGODB_DBURI')}/{os.getenv('MONGODB_DB')}?retryWrites=true&w=majority")
-client = pymongo.MongoClient(f"mongodb+srv://{os.getenv('MONGODB_BE_USER')}:{os.getenv('MONGODB_PASS')}@{os.getenv('MONGODB_DBURI')}/?{os.getenv('MONGODB_DB')}retryWrites=true&w=majority")
+client = pymongo.MongoClient(f"mongodb+srv://{os.getenv('MONGODB_BE_USER')}:{os.getenv('MONGODB_PASS')}@{os.getenv('MONGODB_DBURI')}/{os.getenv('MONGODB_DB')}?retryWrites=true&w=majority")
 db = client[os.getenv('MONGODB_DB')]
 
 def get_user_by_token(token):
