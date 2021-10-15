@@ -2,6 +2,7 @@ import csv
 import os
 import pymongo
 from bson import ObjectId
+from bson.json_util import dumps
 from flask import Flask, request, render_template_string, render_template, g
 
 LOGS_FILE = "data/logs.csv"
@@ -24,6 +25,10 @@ def get_user_by_token(token):
 def get_user_by_id(str : id):
     return db.users.find_one({"_id":ObjectId(id)})
 
+def reformat_mongo_id(item):
+    item["id"] = str(item.pop("_id", None))
+    return item
+
 def create_app():
     """ Flask application factory """
     
@@ -35,10 +40,11 @@ def create_app():
     def home_page():
         return {"meesage" : "hello world!"}
 
-    @app.route('/api/login', methods=["POST"])
+    @app.route('/api/login')
     def login():
-        token = request.json["token"]
-        user = get_user_by_token(token)
+        token = request.headers["token"]
+        user = dict(get_user_by_token(token))
+        user = reformat_mongo_id(user)
         if user:
             return {
                 "message" : "Success",
@@ -75,7 +81,7 @@ def create_app():
             # with open(LOGS_FILE,"r") as f:
             #     reader = csv.DictReader(f,delimiter = ",")
             #     messages = [i for i in reader]
-            messages = list(db.logs.find())
+            messages = [reformat_mongo_id(i) for i in db.logs.find()]
             return {"messages" : messages}
     
         msg = request.json
@@ -96,7 +102,7 @@ def create_app():
         # with open(LOGS_FILE, 'a+', newline='') as f:
             # w = csv.DictWriter(f, msg.keys()) 
             # w.writerow(msg)   
-        db.logs.insert(msg)
+        id = str(db.logs.insert_one(msg).inserted_id)
 
         return {"id" : id}
 

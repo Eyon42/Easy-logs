@@ -147,14 +147,12 @@
     <script>
         var user_data;
         fetch('/api/login', {
-                method: 'post',
+                method: 'get',
                 headers: {
                     'Accept': 'application/json, text/plain, */*',
                     'Content-Type': 'application/json',
                     'token' : '{{ token }}'
-                },
-                body: JSON.stringify({"token" : "{{ token }}"})
-                }).then(res => res.json())
+                }}).then(res => res.json())
             .then(data => user_data = data.user)
             .then(() => {
                 document.getElementById("user_name").innerText = document.getElementById("user_name").innerText + " "+ user_data.name;
