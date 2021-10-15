@@ -9,6 +9,195 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,300&display=swap" rel="stylesheet">
     <title>Document</title>
+    <style>
+      :root{
+    --color-main: #1667b8;
+    --color-main-2: #3d7dbd;
+    --bg: #cbcbda;
+    --bg-2:#7f7f85;
+    
+}
+body {
+    background-repeat: no-repeat;
+    font-family: 'montserrat';
+    background-color: rgb(133, 186, 246);
+    margin: 0;
+    
+}
+.contenedor__header{
+    display: grid;
+    background-color: var(--color-main);
+    grid-template-columns: repeat(2, 1fr);
+    margin: 0;
+   box-shadow: 2px 2px 2px 2px #131516;
+   z-index: 100;
+}
+.admin,
+.nasa{
+    margin: 1rem 1rem .5rem  1rem ;
+    padding: .3rem;
+    background-color: var(--bg);
+    border-radius: .2rem;
+    font-size: 1.5rem;
+    box-shadow: 2px 2px rgb(0,0,0,0.5);
+}
+
+.container__barra{
+    position: static;
+    margin-top: .7rem;
+    height: 70%;
+    width: 100%;
+    background-color: var(--color-main);
+    margin-bottom: 4rem;
+    overflow-y: scroll;
+    max-height: 50%;
+    
+}
+.channels{
+    display: block ;
+    margin: 1rem 1rem .8rem  1rem ;
+    padding: .4rem;
+    font-size: 1rem;
+    border-radius: .3rem;
+    background-color: var(--bg);
+    box-shadow: 2px 2px rgb(0,0,0,0.5);
+    
+}
+.container__barra ul{
+    background-color: var(--color-main-2);
+    list-style-type: none;
+    margin: -1rem 1rem .5rem  1rem ;
+    padding: .7rem;
+    font-size: 1.3rem;
+    overflow-y: scroll;
+    min-height: 10%;
+    max-height: 10%;
+}
+
+.container__barra ul li{
+    background-color: var(--bg);
+    text-align: center;
+    border: 2px solid;
+    border-radius: .3rem;
+    margin: .5rem;
+}
+.container__barra ul li:hover{
+    background-color: var(--bg-2);
+}
+.container__barra ul a{
+    text-decoration: none;
+    color: black;
+
+}
+.division{
+    display: block;
+    font-size: 2rem;
+    padding: 3rem;
+}
+.select{
+    padding: .3rem;
+    margin-left: 1rem;
+    margin-top: 0px;
+    margin-bottom: -1rem;
+}
+.select-ultimo{
+    padding: .3rem;
+    margin-left: 1rem;
+    margin-top: 0px;
+    margin-bottom: 1rem;  
+}
+
+.input-text{
+    margin-left: 1rem;
+    padding: .5rem;
+}
+.range-input{
+    margin: 1rem 0rem 0rem 0rem;
+}
+.label-range{
+    margin: 1rem 0rem 1rem 1rem;
+}
+.label__dissonance{
+    margin: 1rem 0rem 1rem 1rem;
+}
+.container__division{
+    background-color: var(--color-main-2);
+    padding: .8rem;
+    border-radius: .5rem;
+    margin: .5rem;
+}
+.chat-message {
+    display: block;
+    width: 80%;
+    background-color: var(--bg);
+    border-radius: 10px;
+    padding: 10px;
+    margin: .7rem;
+    box-shadow: 3px 3px 3px 1px var(--color-main);
+    align-items: center;
+}
+
+.chat-message p {
+    margin: 0px;
+    color: #131516;
+    font-size: 1.3rem;
+}
+
+.chat-author {
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.chat-author-broadcaster {
+    color:  var(--color-main);
+}
+
+.chat-author-moderator {
+    color: #4F4F54;
+}
+
+.container__principal{
+    display: grid;
+    grid-template-columns: 450px 1fr;
+}
+.container__js{
+    margin-left: 1rem;
+    margin-right: 6rem;
+    max-height: 700px;
+    overflow-y: scroll;
+}
+.container__barras{
+    display: block;
+}
+.busqueda{
+
+    width: 100%;
+    padding: 1.3rem;
+    margin: 0;
+    background-color: var(--color-main);
+    box-shadow: 3px 3px 3px 1px #131516;
+    border-radius: .3rem;
+}
+.busqueda input{
+    font-size: 1.4rem;
+    padding: .5rem;
+    border-radius: .4rem;
+    
+}
+.range-input{
+    color: #131516;
+    font-size: 2rem;
+}
+.button{
+    width: 170px;
+}
+.button:hover{
+    background-color: var(--bg-2);
+}
+
+
+
+    </style>
 </head>
 <body>
     <header>
@@ -97,360 +286,28 @@
     <div class="container__js">
         <div id="message-board">
         <script>
-        messages = [
-        {
-          "author_name": "Francesco Gentile",
-          "channel": "cat",
-          "id": "0",
-          "message": "Hei",
-          "timestamp": "Sun, 03 Oct 2021 02:59:53 GMT"
-        },
-        {
-          "author_name": "Francesco Gentile",
-          "channel": "cat",
-          "id": "1",
-          "message": "a",
-          "timestamp": "Sun, 03 Oct 2021 03:35:15 GMT"
-        },
-        {
-          "author_name": "Francesco Gentile",
-          "channel": "cat",
-          "id": "2",
-          "message": "cat",
-          "timestamp": "Sun, 03 Oct 2021 03:35:20 GMT"
-        },
-        {
-          "author_name": "Francesco Gentile",
-          "channel": "cat",
-          "id": "3",
-          "message": "",
-          "timestamp": "Sun, 03 Oct 2021 03:35:30 GMT"
-        },
-        {
-          "author_name": "Francesco Gentile",
-          "channel": "cat",
-          "id": "4",
-          "message": "Hello!",
-          "timestamp": "Sun, 03 Oct 2021 03:35:36 GMT"
-        },
-        {
-          "author_name": "Francesco Gentile",
-          "channel": "cat",
-          "id": "5",
-          "message": "asdf",
-          "timestamp": "Sun, 03 Oct 2021 03:35:45 GMT"
-        },
-        {
-          "author_name": "Francesco Gentile",
-          "channel": "cat",
-          "id": "6",
-          "message": "",
-          "timestamp": "Sun, 03 Oct 2021 03:37:27 GMT"
-        },
-        {
-          "author_name": "Francesco Gentile",
-          "channel": "cat",
-          "id": "7",
-          "message": "asdf",
-          "timestamp": "Sun, 03 Oct 2021 03:37:29 GMT"
-        },
-        {
-          "author_name": "Francesco Gentile",
-          "channel": "cat",
-          "id": "8",
-          "message": "",
-          "timestamp": "Sun, 03 Oct 2021 03:38:11 GMT"
-        },
-        {
-          "author_name": "Francesco Gentile",
-          "channel": "cat",
-          "id": "9",
-          "message": "",
-          "timestamp": "Sun, 03 Oct 2021 03:38:12 GMT"
-        },
-        {
-          "author_name": "Francesco Gentile",
-          "channel": "cat",
-          "id": "10",
-          "message": "",
-          "timestamp": "Sun, 03 Oct 2021 03:38:12 GMT"
-        },
-        {
-          "author_name": "Francesco Gentile",
-          "channel": "cat",
-          "id": "11",
-          "message": "",
-          "timestamp": "Sun, 03 Oct 2021 03:38:13 GMT"
-        },
-        {
-          "author_name": "Francesco Gentile",
-          "channel": "cat",
-          "id": "12",
-          "message": "sdfgsd",
-          "timestamp": "Sun, 03 Oct 2021 03:38:14 GMT"
-        },
-        {
-          "author_name": "Francesco Gentile",
-          "channel": "cat",
-          "id": "13",
-          "message": "fasdfhg",
-          "timestamp": "Sun, 03 Oct 2021 03:38:16 GMT"
-        },
-        {
-          "author_name": "Francesco Gentile",
-          "channel": "cat",
-          "id": "14",
-          "message": "Hello!",
-          "timestamp": "Sun, 03 Oct 2021 03:41:22 GMT"
-        },
-        {
-          "author_name": "Francesco Gentile",
-          "channel": "cat",
-          "id": "15",
-          "message": "Test Log",
-          "timestamp": "Sun, 03 Oct 2021 03:41:27 GMT"
-        },
-        {
-          "author_name": "Francesco Gentile",
-          "channel": "cat",
-          "id": "16",
-          "message": "",
-          "timestamp": "Sun, 03 Oct 2021 04:00:27 GMT"
-        },
-        {
-          "author_name": "Francesco Gentile",
-          "channel": "cat",
-          "id": "17",
-          "message": "Hello!",
-          "timestamp": "Sun, 03 Oct 2021 04:00:36 GMT"
-        },
-        {
-          "author_name": "Francesco Gentile",
-          "channel": "cat",
-          "id": "18",
-          "message": "",
-          "timestamp": "Sun, 03 Oct 2021 04:03:36 GMT"
-        },
-        {
-          "author_name": "Francesco Gentile",
-          "channel": "cat",
-          "id": "19",
-          "message": "",
-          "timestamp": "Sun, 03 Oct 2021 04:03:44 GMT"
-        },
-        {
-          "author_name": "Francesco Gentile",
-          "channel": "cat",
-          "id": "20",
-          "message": "Hello!",
-          "timestamp": "Sun, 03 Oct 2021 04:03:50 GMT"
-        },
-        {
-          "author_name": "Francesco Gentile",
-          "channel": "cat",
-          "id": "21",
-          "message": "",
-          "timestamp": "Sun, 03 Oct 2021 04:03:50 GMT"
-        },
-        {
-          "author_name": "Francesco Gentile",
-          "channel": "cat",
-          "id": "22",
-          "message": "",
-          "timestamp": "Sun, 03 Oct 2021 04:04:11 GMT"
-        },
-        {
-          "author_name": "Francesco Gentile",
-          "channel": "cat",
-          "id": "23",
-          "message": "",
-          "timestamp": "Sun, 03 Oct 2021 04:05:52 GMT"
-        },
-        {
-          "author_name": "Francesco Gentile",
-          "channel": "cat",
-          "id": "24",
-          "message": "",
-          "timestamp": "Sun, 03 Oct 2021 04:07:14 GMT"
-        },
-        {
-          "author_name": "Francesco Gentile",
-          "channel": "cat",
-          "id": "25",
-          "message": "Hello!",
-          "timestamp": "Sun, 03 Oct 2021 04:07:23 GMT"
-        },
-        {
-          "author_name": "Francesco Gentile",
-          "channel": "cat",
-          "id": "26",
-          "message": "",
-          "timestamp": "Sun, 03 Oct 2021 04:13:55 GMT"
-        },
-        {
-          "author_name": "Francesco Gentile",
-          "channel": "cat",
-          "id": "27",
-          "message": "",
-          "timestamp": "Sun, 03 Oct 2021 04:14:03 GMT"
-        },
-        {
-          "author_name": "Francesco Gentile",
-          "channel": "cat",
-          "id": "28",
-          "message": "",
-          "timestamp": "Sun, 03 Oct 2021 04:14:39 GMT"
-        },
-        {
-          "author_name": "Francesco Gentile",
-          "channel": "cat",
-          "id": "29",
-          "message": "This logging is going good",
-          "timestamp": "Sun, 03 Oct 2021 04:15:00 GMT"
-        },
-        {
-          "author_name": "Francesco Gentile",
-          "channel": "cat",
-          "id": "30",
-          "message": "",
-          "timestamp": "Sun, 03 Oct 2021 04:15:42 GMT"
-        },
-        {
-          "author_name": "Francesco Gentile",
-          "channel": "eva01",
-          "id": "0",
-          "message": "Start of activity",
-          "timestamp": "Sun, 03 Oct 2021 04:17:31 GMT"
-        },
-        {
-          "author_name": "Francesco Gentile",
-          "channel": "eva01",
-          "id": "1",
-          "message": "Big Explosion",
-          "timestamp": "Sun, 03 Oct 2021 04:17:49 GMT"
-        },
-        {
-          "author_name": "Francesco Gentile",
-          "channel": "eva01",
-          "id": "2",
-          "message": "End of activity",
-          "timestamp": "Sun, 03 Oct 2021 04:17:54 GMT"
-        },
-        {
-          "author_name": "Francesco Gentile",
-          "channel": "eva01",
-          "id": "3",
-          "message": "jk",
-          "timestamp": "Sun, 03 Oct 2021 04:19:15 GMT"
-        },
-        {
-          "author_name": "Francesco Gentile",
-          "channel": "life-support",
-          "id": "0",
-          "message": "Everything Nominal",
-          "timestamp": "Sun, 03 Oct 2021 04:22:02 GMT"
-        },
-        {
-          "author_name": "Francesco Gentile",
-          "channel": "life-support",
-          "id": "1",
-          "message": "O2 is fine",
-          "timestamp": "Sun, 03 Oct 2021 14:09:28 GMT"
-        },
-        {
-          "author_name": "Francesco Gentile",
-          "channel": "life-support",
-          "id": "2",
-          "message": "Ventilation Nominal",
-          "timestamp": "Sun, 03 Oct 2021 14:09:37 GMT"
-        },
-        {
-          "author_name": "Francesco Gentile",
-          "channel": "life-support",
-          "id": "3",
-          "message": "Cats, fed",
-          "timestamp": "Sun, 03 Oct 2021 14:09:46 GMT"
-        },
-        {
-          "author_name": "Francesco Gentile",
-          "channel": "life-support",
-          "id": "4",
-          "message": "O2 is fine",
-          "timestamp": "Sun, 03 Oct 2021 14:50:08 GMT"
-        },
-        {
-          "author_name": "Francesco Gentile",
-          "channel": "life-support",
-          "id": "5",
-          "message": "Big Explosion",
-          "timestamp": "Sun, 03 Oct 2021 14:50:15 GMT"
-        },
-        {
-          "author_name": "Francesco Gentile",
-          "channel": "life-support",
-          "id": "6",
-          "message": "Big Explosion",
-          "timestamp": "Sun, 03 Oct 2021 14:50:15 GMT"
-        },
-        {
-          "author_name": "Francesco Gentile",
-          "channel": "life-support",
-          "id": "7",
-          "message": "Everything Nominal",
-          "timestamp": "Sun, 03 Oct 2021 16:20:10 GMT"
-        },
-        {
-          "author_name": "Francesco Gentile",
-          "channel": "life-support",
-          "id": "8",
-          "message": "Big Explosion",
-          "timestamp": "Sun, 03 Oct 2021 17:12:21 GMT"
-        },
-        {
-          "author_name": "Francesco Gentile",
-          "channel": "life-support",
-          "id": "9",
-          "message": "asdf",
-          "timestamp": "Sun, 03 Oct 2021 17:12:28 GMT"
-        },
-        {
-          "author_name": "Francesco Gentile",
-          "channel": "life-support",
-          "id": "10",
-          "message": "",
-          "timestamp": "Sun, 03 Oct 2021 17:12:44 GMT"
-        },
-        {
-          "author_name": "Albano Bosquet",
-          "channel": "life-support",
-          "id": "11",
-          "message": "Hail Hydra!",
-          "timestamp": "Sun, 03 Oct 2021 17:13:01 GMT"
-        },
-        {
-          "author_name": "Francesco Gentile",
-          "channel": "life-support",
-          "id": "12",
-          "message": "AAAAAAAAAA",
-          "timestamp": "Sun, 03 Oct 2021 18:02:00 GMT"
-        }
-      ]
-        messages.forEach(m => {
-            m.position = "Scientist"
-        }); // Delete this. Fetch user data instead <--------------------------------------------------
-        
-        board = document.getElementById("message-board").innerHTML;
-        messages.forEach(m => {
-            board += `
-                <div class="chat-message"><b>
-                    <p style="font-size:x-small;">${m.channel}-${m.id}</p>
-                    <p>${m.author_name} : ${m.position}<span style="float: right;">${m.timestamp}</span></p>
-                    <br/>
-                    <p>${m.message}</p>
-                    </b>
-                </div>`
-        });
-        document.getElementById("message-board").innerHTML = board;
+        fetch('/api/messages', {
+                method: 'get',
+                headers: {
+                    'Accept': 'application/json, text/plain, */*',
+                    'Content-Type': 'application/json',
+                    'token' : '{{ token }}'
+                }}).then(res => res.json())
+            .then(data => {
+                board = document.getElementById("message-board").innerHTML;
+                data.messages.forEach(m => {
+                    board += `
+                        <div class="chat-message"><b>
+                            <p style="font-size:x-small;">${m.channel}-${m.id}</p>
+                            <p>${m.author_name} : ${m.position}<span style="float: right;">${m.timestamp}</span></p>
+                            <br/>
+                            <p>${m.message}</p>
+                            </b>
+                        </div>`
+                });
+                document.getElementById("message-board").innerHTML = board;
+            })
+
         </script>
         </div>
         

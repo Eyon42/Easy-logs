@@ -116,6 +116,19 @@ def create_app():
 
             return render_template("logger.html", channel=channel, token=token), 200
 
+    @app.route("/overview/<token>")
+    def overview_site(token):
+        user = get_user_by_token(token)
+
+        if user:
+            if user["position"] == "Supervisor":
+                return render_template("admin.html", token=token), 200
+            else:
+                return render_template_string("You are not authorized"), 403
+
+        return render_template_string("invalid token"), 403
+            
+
     return app
 
 
