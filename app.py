@@ -15,8 +15,9 @@ class ConfigClass(object):
 # with open("data/users.json") as f:
 #     users = json.load(f)
 # user_tokens = [i["token"] for i in users]
-client = pymongo.MongoClient(f"mongodb+srv://{os.environ.get('MONGODB_BE_USER')}:{os.environ.get('MONGODB_PASS')}@{os.environ.get('MONGODB_DBURI')}/?{os.environ.get('MONGODB_DB')}retryWrites=true&w=majority")
-db = client[os.environ.get('MONGODB_DB')]
+print(f"mongodb+srv://{os.getenv('MONGODB_BE_USER')}:{os.getenv('MONGODB_PASS')}@{os.getenv('MONGODB_DBURI')}/{os.getenv('MONGODB_DB')}?retryWrites=true&w=majority")
+client = pymongo.MongoClient(f"mongodb+srv://{os.getenv('MONGODB_BE_USER')}:{os.getenv('MONGODB_PASS')}@{os.getenv('MONGODB_DBURI')}/?{os.getenv('MONGODB_DB')}retryWrites=true&w=majority")
+db = client[os.getenv('MONGODB_DB')]
 
 def get_user_by_token(token):
     return db.users.find_one({"token":token})
@@ -116,4 +117,4 @@ def create_app():
 # Start development web server
 if __name__ == '__main__':
     app = create_app()
-    app.run(host='0.0.0.0', port=os.environ.get("PORT"), debug=True)
+    app.run(host='0.0.0.0', port=os.getenv("PORT"), debug=True)
